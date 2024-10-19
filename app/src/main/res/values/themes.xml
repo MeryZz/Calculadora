@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Calculadora" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/blanco</item>
+        <item name="colorPrimaryVariant">@color/negro</item>
+    </style>
+
+    <style name="BtnNumeros">
+        <item name="android:background">@color/rosa</item>
+        <item name="android:textColor">@color/negro</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:fontFamily">@font/fuente</item>
+
+    </style>
+
+    <style name="BtnOperaciones">
+        <item name="android:background">@color/rosa</item>
+        <item name="android:textColor">@color/naranja</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:fontFamily">@font/fuente</item>
+    </style>
+
+    <style name="Pantalla">
+        <item name="android:textColor">@color/negro</item>
+        <item name="android:textSize">48sp</item>
+    </style>
+
+    <style name="Separador">
+        <item name="android:background">@color/rosa</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:elevation">3dp</item>
+    </style>
+
+</resources>
