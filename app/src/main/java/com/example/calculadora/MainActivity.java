@@ -12,10 +12,21 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @author María
+ * @version 1.0
+ * @since 01-11-2024
+ */
+
+/**
+ * MainActivity es la clase principal de la aplicación Calculadora.
+ * Esta clase actúa como intermediaria entre la interfaz de usuario y la clase Calculator.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private TextView pantalla; //El text de la pantalla
     private StringBuilder expression = new StringBuilder(); //Para almacenar la expresión
+    private Calculator calculator; // Instancia de Calculator
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Pantalla de la calculadora
         pantalla = findViewById(R.id.pantalla);
+        //Instancia de Calculator
+        calculator = new Calculator();
 
+        /**
+         * Inicializa los botones de la calculadora y sus listeners.
+         */
         //Botones
         Button btn0 = findViewById(R.id.btn0);
         Button btn1 = findViewById(R.id.btn1);
@@ -91,47 +107,13 @@ public class MainActivity extends AppCompatActivity {
         //Listener para el =
         btnIgual.setOnClickListener(v -> {
             try {
-                double result = calculate(expression.toString()); //Para llamar a la función recursiva
+                double result = calculator.calculate(expression.toString()); //Para llamar a la función recursiva
                 pantalla.setText(String.valueOf(result));
             } catch (Exception e) {
                 pantalla.setText("-1"); //Para errores devolverá el valor -1
                 Toast.makeText(MainActivity.this, "Error en la expresión!!!", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    //Función recursiva calculate
-    private double calculate(String expr) {
-        //Reemplazar comas por puntos para que no me de -1 cuando pongo algún número decimal
-        expr = expr.replace(",", ".");
-
-        //Para las restas
-        if (expr.contains("-")) {
-            String[] parts = expr.split("(?<=\\d)(-)(?=\\d)", 2);
-            return calculate(parts[0]) - calculate(parts[1]);
-        }
-
-        //Para las sumas
-        if (expr.contains("+")) {
-            String[] parts = expr.split("\\+", 2);
-            return calculate(parts[0]) + calculate(parts[1]);
-        }
-
-        //Para las multiplicaciones
-        if (expr.contains("*")) {
-            String[] parts = expr.split("\\*", 2);
-            return calculate(parts[0]) * calculate(parts[1]);
-        }
-
-        //Para las divisiones
-        if (expr.contains("/")) {
-            String[] parts = expr.split("/", 2);
-            return calculate(parts[0]) / calculate(parts[1]);
-        }
-
-        //Si no hay operadores, convertimos la cadena en un número
-        return Double.parseDouble(expr);
-
     }
 
 }
